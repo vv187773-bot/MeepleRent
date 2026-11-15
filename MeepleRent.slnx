@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="MeepleRent.Android/MeepleRent.Android.csproj">
+    <Deploy />
+  </Project>
+  <Project Path="MeepleRent.ConsoleApp/MeepleRent.ConsoleApp.csproj" />
+  <Project Path="MeepleRent.Data/MeepleRent.Data.csproj" />
+  <Project Path="MeepleRent.Desktop/MeepleRent.Desktop.csproj" />
+  <Project Path="MeepleRent/MeepleRent.csproj" />
+</Solution>

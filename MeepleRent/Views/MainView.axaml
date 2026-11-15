@@ -1,0 +1,117 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:MeepleRent.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             x:Class="MeepleRent.Views.MainView"
+             x:DataType="vm:MainViewModel">
+    <Design.DataContext>
+        <vm:MainViewModel />
+    </Design.DataContext>
+
+    <TabControl>
+        <TabItem Header="Клиенты">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+                <StackPanel Spacing="6" Margin="12">
+                    <TextBlock Text="Клиенты клуба «Милпл»"
+                               FontSize="18" FontWeight="SemiBold" TextWrapping="Wrap" />
+                    <TextBlock Text="Кто берёт игры напрокат и сколько бонусов накопил."
+                               TextWrapping="Wrap" Opacity="0.7" />
+                    <ListBox x:Name="ClientsList" MaxHeight="250" SelectionChanged="ClientsList_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" TextWrapping="Wrap" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <TextBlock Text="Фамилия и имя" Margin="0,8,0,0" />
+                    <TextBox x:Name="ClientFullNameBox" MaxWidth="300" MinHeight="40" PlaceholderText="Анна Смирнова" />
+                    <TextBlock Text="Телефон" />
+                    <TextBox x:Name="ClientPhoneBox" MaxWidth="300" MinHeight="40" PlaceholderText="+7 900 000-00-00" />
+                    <TextBlock Text="Бонусные баллы (целое число)" />
+                    <TextBox x:Name="ClientBonusBox" MaxWidth="300" MinHeight="40" PlaceholderText="0" />
+                    <TextBlock Text="Любимый жанр (можно не заполнять)" />
+                    <TextBox x:Name="ClientGenreBox" MaxWidth="300" MinHeight="40" PlaceholderText="стратегия" />
+
+                    <Button Content="Добавить" Click="AddClient_Click" HorizontalAlignment="Stretch" MaxWidth="300" MinHeight="40" />
+                    <Button Content="Сохранить изменения" Click="SaveClient_Click" HorizontalAlignment="Stretch" MaxWidth="300" MinHeight="40" />
+                    <Button Content="Удалить" Click="DeleteClient_Click" HorizontalAlignment="Stretch" MaxWidth="300" MinHeight="40" />
+                    <TextBlock x:Name="ClientsMessage" TextWrapping="Wrap" />
+                </StackPanel>
+            </ScrollViewer>
+        </TabItem>
+
+        <TabItem Header="Игры">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+                <StackPanel Spacing="6" Margin="12">
+                    <TextBlock Text="Каталог игр"
+                               FontSize="18" FontWeight="SemiBold" TextWrapping="Wrap" />
+                    <TextBlock Text="Число игроков, длительность партии, жанр и цена аренды за сутки."
+                               TextWrapping="Wrap" Opacity="0.7" />
+                    <ListBox x:Name="GamesList" MaxHeight="250" SelectionChanged="GamesList_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" TextWrapping="Wrap" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <TextBlock Text="Название игры" Margin="0,8,0,0" />
+                    <TextBox x:Name="GameTitleBox" MaxWidth="300" MinHeight="40" PlaceholderText="Колонизаторы" />
+                    <TextBlock Text="Минимум игроков (целое число)" />
+                    <TextBox x:Name="GameMinPlayersBox" MaxWidth="300" MinHeight="40" PlaceholderText="2" />
+                    <TextBlock Text="Максимум игроков (целое число)" />
+                    <TextBox x:Name="GameMaxPlayersBox" MaxWidth="300" MinHeight="40" PlaceholderText="4" />
+                    <TextBlock Text="Партия, минут (целое число)" />
+                    <TextBox x:Name="GamePlayTimeBox" MaxWidth="300" MinHeight="40" PlaceholderText="90" />
+                    <TextBlock Text="Цена за сутки, ₽ (целое число)" />
+                    <TextBox x:Name="GamePriceBox" MaxWidth="300" MinHeight="40" PlaceholderText="350" />
+                    <TextBlock Text="Жанр" />
+                    <TextBox x:Name="GameGenreBox" MaxWidth="300" MinHeight="40" PlaceholderText="стратегия" />
+
+                    <Button Content="Добавить" Click="AddGame_Click" HorizontalAlignment="Stretch" MaxWidth="300" MinHeight="40" />
+                    <Button Content="Сохранить изменения" Click="SaveGame_Click" HorizontalAlignment="Stretch" MaxWidth="300" MinHeight="40" />
+                    <Button Content="Удалить" Click="DeleteGame_Click" HorizontalAlignment="Stretch" MaxWidth="300" MinHeight="40" />
+                    <TextBlock x:Name="GamesMessage" TextWrapping="Wrap" />
+                </StackPanel>
+            </ScrollViewer>
+        </TabItem>
+
+        <TabItem Header="Аренды">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+                <StackPanel Spacing="6" Margin="12">
+                    <TextBlock Text="Аренды"
+                               FontSize="18" FontWeight="SemiBold" TextWrapping="Wrap" />
+                    <TextBlock Text="Кто какую игру взял, на какой срок и за какую сумму."
+                               TextWrapping="Wrap" Opacity="0.7" />
+                    <ListBox x:Name="RentalsList" MaxHeight="250" SelectionChanged="RentalsList_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" TextWrapping="Wrap" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <TextBlock Text="Клиент" Margin="0,8,0,0" />
+                    <ComboBox x:Name="RentalClientBox" MaxWidth="300" MinHeight="40" HorizontalAlignment="Stretch" />
+                    <TextBlock Text="Игра" />
+                    <ComboBox x:Name="RentalGameBox" MaxWidth="300" MinHeight="40" HorizontalAlignment="Stretch" />
+                    <TextBlock Text="Дата выдачи" />
+                    <CalendarDatePicker x:Name="RentalDatePicker" MaxWidth="300" MinHeight="40" HorizontalAlignment="Left" />
+                    <TextBlock Text="Срок, дней (целое число)" />
+                    <TextBox x:Name="RentalDaysBox" MaxWidth="300" MinHeight="40" PlaceholderText="5" />
+                    <TextBlock Text="Сумма, ₽ (целое число)" />
+                    <TextBox x:Name="RentalTotalBox" MaxWidth="300" MinHeight="40" PlaceholderText="1750" />
+                    <CheckBox x:Name="RentalReturnedCheck" Content="Игра возвращена в клуб" MinHeight="40" />
+
+                    <Button Content="Добавить" Click="AddRental_Click" HorizontalAlignment="Stretch" MaxWidth="300" MinHeight="40" />
+                    <Button Content="Сохранить изменения" Click="SaveRental_Click" HorizontalAlignment="Stretch" MaxWidth="300" MinHeight="40" />
+                    <Button Content="Удалить" Click="DeleteRental_Click" HorizontalAlignment="Stretch" MaxWidth="300" MinHeight="40" />
+                    <TextBlock x:Name="RentalsMessage" TextWrapping="Wrap" />
+                </StackPanel>
+            </ScrollViewer>
+        </TabItem>
+    </TabControl>
+</UserControl>
