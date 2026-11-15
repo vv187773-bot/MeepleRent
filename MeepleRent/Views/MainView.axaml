@@ -3,16 +3,48 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:MeepleRent.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
              x:Class="MeepleRent.Views.MainView"
              x:DataType="vm:MainViewModel">
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainViewModel />
     </Design.DataContext>
 
-    <TextBox Text="{Binding Greeting}"
-             HorizontalAlignment="Center"
-             VerticalAlignment="Center" />
+    <TabControl>
+        <TabItem Header="Клиенты">
+            <ScrollViewer>
+                <StackPanel Spacing="8" Margin="12">
+                    <TextBlock Text="Клиенты клуба «Милпл»"
+                               FontSize="18" FontWeight="SemiBold" TextWrapping="Wrap" />
+                    <TextBlock Text="Кто берёт игры напрокат и сколько бонусов накопил."
+                               TextWrapping="Wrap" Opacity="0.7" />
+                    <ListBox x:Name="ClientsList" />
+                </StackPanel>
+            </ScrollViewer>
+        </TabItem>
+
+        <TabItem Header="Игры">
+            <ScrollViewer>
+                <StackPanel Spacing="8" Margin="12">
+                    <TextBlock Text="Каталог игр"
+                               FontSize="18" FontWeight="SemiBold" TextWrapping="Wrap" />
+                    <TextBlock Text="Число игроков, длительность партии, жанр и цена аренды за сутки."
+                               TextWrapping="Wrap" Opacity="0.7" />
+                    <ListBox x:Name="GamesList" />
+                </StackPanel>
+            </ScrollViewer>
+        </TabItem>
+
+        <TabItem Header="Аренды">
+            <ScrollViewer>
+                <StackPanel Spacing="8" Margin="12">
+                    <TextBlock Text="Аренды"
+                               FontSize="18" FontWeight="SemiBold" TextWrapping="Wrap" />
+                    <TextBlock Text="Кто какую игру взял, на какой срок и за какую сумму."
+                               TextWrapping="Wrap" Opacity="0.7" />
+                    <ListBox x:Name="RentalsList" />
+                </StackPanel>
+            </ScrollViewer>
+        </TabItem>
+    </TabControl>
 </UserControl>
